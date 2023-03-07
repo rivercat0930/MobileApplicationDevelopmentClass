@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ATM</string>
+    <string name="BTN_1">1</string>
+    <string name="BTN_2">2</string>
+    <string name="BTN_3">3</string>
+    <string name="BTN_4">4</string>
+    <string name="BTN_5">5</string>
+    <string name="BTN_6">6</string>
+    <string name="BTN_7">7</string>
+    <string name="BTN_8">8</string>
+    <string name="BTN_9">9</string>
+    <string name="BTN_clear">清除</string>
+    <string name="BTN_0">0</string>
+    <string name="BTN_confirm">確認</string>
+    <string name="BTN_exit">離開</string>
+</resources>
