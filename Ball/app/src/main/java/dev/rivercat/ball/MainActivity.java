@@ -1,9 +1,14 @@
 package dev.rivercat.ball;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvMessage;
     private RadioGroup rgBalls;
     private TextView tvRgMessage;
+    private Spinner spFavBall;
+    private TextView tvSpMessage;
+    private String[] favBalls = {"", "籃球", "足球", "棒球"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         createCheckBox();
         createRg();
+        createSp();
     }
 
     private void createCheckBox() {
@@ -81,5 +90,32 @@ public class MainActivity extends AppCompatActivity {
         };
 
         rgBalls.setOnCheckedChangeListener(rgListener);
+    }
+
+    private void createSp() {
+        this.spFavBall = findViewById(R.id.planets_spinner);
+        this.tvMessage = findViewById(R.id.tv_sp_message);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, favBalls);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spFavBall.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener spListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String message = "球類中最喜歡 ";
+                message += adapterView.getSelectedItem().toString();
+
+                tvMessage.setText(message);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+
+        spFavBall.setOnItemSelectedListener(spListener);
     }
 }
