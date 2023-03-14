@@ -2,16 +2,19 @@ package dev.rivercat.ball;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private CheckBox cbBasketball;
@@ -22,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvRgMessage;
     private Spinner spFavBall;
     private TextView tvSpMessage;
-    private String[] favBalls = {"", "籃球", "足球", "棒球"};
+    private ImageView ivCat;
+    private ArrayList<Button> controlPictureButton = new ArrayList<>();
+    private ArrayList<Integer> pictures = new ArrayList<>();
+    private int pictureIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         createCheckBox();
         createRg();
         createSp();
+        createImage();
     }
 
     private void createCheckBox() {
@@ -94,11 +101,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void createSp() {
         this.spFavBall = findViewById(R.id.planets_spinner);
-        this.tvMessage = findViewById(R.id.tv_sp_message);
+        this.tvSpMessage = findViewById(R.id.tv_sp_message);
 
+        /*
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, favBalls);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         */
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.fav_balls, android.R.layout.simple_spinner_item);
         spFavBall.setAdapter(adapter);
 
         AdapterView.OnItemSelectedListener spListener = new AdapterView.OnItemSelectedListener() {
@@ -107,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = "球類中最喜歡 ";
                 message += adapterView.getSelectedItem().toString();
 
-                tvMessage.setText(message);
+                tvSpMessage.setText(message);
             }
 
             @Override
@@ -117,5 +128,30 @@ public class MainActivity extends AppCompatActivity {
         };
 
         spFavBall.setOnItemSelectedListener(spListener);
+    }
+
+    private void createImage() {
+        this.ivCat = findViewById(R.id.iv_cat);
+
+        this.controlPictureButton.add(findViewById(R.id.btn_iv_next));
+        this.controlPictureButton.add(findViewById(R.id.btn_iv_previous));
+
+        this.pictures.add(R.drawable.cat1);
+        this.pictures.add(R.drawable.cat2);
+        this.pictures.add(R.drawable.cat3);
+
+
+        View.OnClickListener btnListener = view -> {
+            if (view.getId() == R.id.btn_iv_next)
+                pictureIndex = pictureIndex + 1 >= pictures.size() ? 0 : pictureIndex + 1;
+
+            if (view.getId() == R.id.btn_iv_previous)
+                pictureIndex = pictureIndex - 1 < 0 ? pictures.size() - 1 : pictureIndex - 1;
+
+            ivCat.setImageResource(pictures.get(pictureIndex));
+        };
+
+        for (Button button : controlPictureButton)
+            button.setOnClickListener(btnListener);
     }
 }

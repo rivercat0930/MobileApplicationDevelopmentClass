@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Ball</string>
+    <string-array name="fav_balls">
+        <item>籃球</item>
+        <item>足球</item>
+        <item>棒球</item>
+        <item>網球</item>
+        <item>排球</item>
+        <item>羽球</item>
+        <item>保齡球</item>
+    </string-array>
 </resources>

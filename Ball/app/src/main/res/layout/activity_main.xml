@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -126,19 +127,52 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="最喜歡的球類運動（單選）" />
+                android:text="最喜歡的球類運動（單選）"
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/planets_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:id="@+id/tv_sp_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="球類中最喜歡" />
+                android:text="球類中最喜歡"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_cat"
+            android:layout_width="357dp"
+            android:layout_height="198dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/cat1"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_iv_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="上一張" />
+
+            <Button
+                android:id="@+id/btn_iv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="下一張" />
         </LinearLayout>
 
     </LinearLayout>
